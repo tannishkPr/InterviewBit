@@ -1,0 +1,28 @@
+public class Solution {
+    public int solve(ArrayList<String> A) {
+       ArrayList<Float> arr = new ArrayList<>();
+       for(int i=0;i<A.size();i++){
+           arr.add(Float.parseFloat(A.get(i)));
+       }
+       Collections.sort(arr);
+        
+       return (triplesLessThanN(arr,2) - triplesLessThanN(arr,1)>0)?1:0;
+    }
+    
+    public int triplesLessThanN(ArrayList<Float> arr,int sum){
+        int ans = 0;
+        for(int i=0;i<arr.size()-2;i++){
+            int j = i+1;
+            int k = arr.size() - 1;
+            while(j<k){
+                if(arr.get(i)+arr.get(j)+arr.get(k) >=  sum)
+                    k--;
+                else {
+                    ans+=(k-j);
+                    j++;
+                }
+            }
+        }
+        return ans;
+    }
+}
