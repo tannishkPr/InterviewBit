@@ -1,0 +1,28 @@
+public class Solution {
+    public int threeSumClosest(ArrayList<Integer> A, int B) {
+        Collections.sort(A);
+        int sum = 0;
+        int diff = Integer.MAX_VALUE;
+        int finalSum = 0;
+        for(int i=0;i<A.size();i++){
+            int j = i+1;
+            int k = A.size()-1;
+            while (j<k){
+                sum = A.get(i) + A.get(j) + A.get(k);
+                if(Math.abs(sum - B) == 0)
+                    return sum; 
+                    
+                if(Math.abs(sum - B)< diff){
+                    diff = Math.abs(sum - B);
+                    finalSum = sum;
+                }
+                if (sum <= B) {
+                    j++;
+                } else {
+                    k--;
+                }
+            }
+        }
+        return finalSum;
+    }
+}
